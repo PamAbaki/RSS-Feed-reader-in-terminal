@@ -1,19 +1,16 @@
+import pprint
+from rssfeed import RSSHelper
 
-import feedparser
-
-class RSSHelper:
-    
-        
-    def __init__(self) -> None:
-        return
-
-    def get_rss_titles(self, url) -> list[str]:
-        url = feedparser.parse(url)
-        return [entry.title for entry in url.entries]
-
-    def get_rss_links(self, url) -> list[str]:
-        url = feedparser.parse(url)
-        return [entry.link for entry in url.entries]
-
+url = input("Enter the URL of the RSS feed: ")
+rsh = RSSHelper()
+titles = rsh.get_rss_titles(url)
+links = rsh.get_rss_links(url)
+combined = [(title, link) for title, link in zip(titles, links)]
+for title, link in combined:
+    print("Title:")
+    pprint.pprint(title)
+    print("Link:")
+    pprint.pprint(link)
+    print()
 
 
